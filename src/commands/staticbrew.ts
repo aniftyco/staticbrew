@@ -6,6 +6,7 @@ import {
   formatFlagDescription,
   formatFlagOption,
   formatTables,
+  getPkgJson,
 } from '../uitls.js';
 
 export class StaticBrew extends BaseCommand {
@@ -56,11 +57,10 @@ export class StaticBrew extends BaseCommand {
   }
 
   async run() {
+    const { description, version } = getPkgJson();
     const tables = this.getOptionsTable().concat(this.getCommandsTable());
 
-    this.logger.log(
-      `${this.colors.bold('StaticBrew')} - where your static sites live ${this.colors.dim('(v0.0.0)')}\n`
-    );
+    this.logger.log(`${this.colors.bold('StaticBrew')} - ${description} ${this.colors.dim(`(v${version})`)}\n`);
     this.logger.log(this.colors.yellow('Usage:'));
     this.logger.log(`  staticbrew  ${this.colors.dim('<command> [options]')}`);
 
@@ -69,5 +69,6 @@ export class StaticBrew extends BaseCommand {
       this.logger.log(table.heading);
       this.logger.log(table.rows.join('\n'));
     });
+    this.logger.log('');
   }
 }

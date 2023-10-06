@@ -1,7 +1,16 @@
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 import stringWidth from 'string-width';
 
 import { justify, TERMINAL_SIZE, wrap } from '@poppinss/cliui/helpers';
 import string from '@poppinss/utils/string';
+
+export const getPkgJson = () => {
+  const path = resolve(import.meta.url.slice(7), '../../package.json');
+  const pkg = readFileSync(path, 'utf-8');
+
+  return JSON.parse(pkg);
+};
 
 export const formatCommandName = (command: any, aliases: string[], colors: any) => {
   const formattedAliases = aliases.length ? ` ${colors.dim(`(${aliases.join(', ')})`)}` : '';

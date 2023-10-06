@@ -10,6 +10,7 @@ import {
   formatHelp,
   formatTables,
   formatUsage,
+  getPkgJson,
   renderErrorWithSuggestions,
 } from '../uitls.js';
 
@@ -82,7 +83,6 @@ export class HelpCommand extends BaseCommand {
       return;
     }
 
-    this.logger.log('');
     this.logger.log(this.colors.yellow('Description:'));
     this.logger.log(
       wrap([description], {
@@ -97,7 +97,6 @@ export class HelpCommand extends BaseCommand {
     const aliases = this.kernel.getCommandAliases(command.commandName);
     const usage = formatUsage(command, aliases, this.colors, this.kernel.info.get('binary') as any).join('\n');
 
-    this.logger.log('');
     this.logger.log(this.colors.yellow('Usage:'));
     this.logger.log(usage);
   }
@@ -106,9 +105,9 @@ export class HelpCommand extends BaseCommand {
     const tables = this.makeArgumentsTable('Arguments:', command).concat(this.makeOptionsTable('Options:', command));
 
     formatTables(tables).forEach((table) => {
-      this.logger.log('');
       this.logger.log(table.heading);
       this.logger.log(table.rows.join('\n'));
+      this.logger.log('');
     });
   }
 
@@ -118,12 +117,12 @@ export class HelpCommand extends BaseCommand {
       return;
     }
 
-    this.logger.log('');
     this.logger.log(this.colors.yellow('Help:'));
-    this.logger.log(help);
+    this.logger.log(this.colors.dim(help));
   }
 
   async run() {
+    const { description, version } = getPkgJson();
     const isValidCommand = this.validateCommandName();
     if (!isValidCommand) {
       this.exitCode = 1;
@@ -131,9 +130,11 @@ export class HelpCommand extends BaseCommand {
     }
 
     const command = this.kernel.getCommand(this.name)!;
-    this.logger.log(`StaticBrew CLI ${this.colors.dim('v0.0.0')}`);
+    this.logger.log(`${this.colors.bold('StaticBrew')} - ${description} ${this.colors.dim(`(v${version})`)}\n`);
     this.renderDescription(command);
+    this.logger.log('');
     this.renderUsage(command);
+    this.logger.log('');
     this.renderList(command);
     this.renderHelp(command);
   }
