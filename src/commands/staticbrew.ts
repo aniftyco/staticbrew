@@ -7,7 +7,7 @@ import {
   formatFlagOption,
   formatTables,
   getPkgJson,
-} from '../uitls.js';
+} from '../utils.js';
 
 export class StaticBrew extends BaseCommand {
   static commandName = 'staticbrew';

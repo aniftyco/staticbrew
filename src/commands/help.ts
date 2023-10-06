@@ -12,7 +12,7 @@ import {
   formatUsage,
   getPkgJson,
   renderErrorWithSuggestions,
-} from '../uitls.js';
+} from '../utils.js';
 
 export class HelpCommand extends BaseCommand {
   static commandName = 'help';
