@@ -15,8 +15,14 @@ kernel.defineFlag(HelpCommand.commandName, {
 });
 
 kernel.on('help', async (command, $kernel, parsed) => {
-  parsed.args.unshift(command.commandName);
-  await new HelpCommand($kernel, parsed, kernel.ui, kernel.prompt).exec();
+  if (command.commandName !== StaticBrew.commandName) {
+    parsed.args.unshift(command.commandName);
+
+    await new HelpCommand($kernel, parsed, kernel.ui, kernel.prompt).exec();
+  } else {
+    await new StaticBrew($kernel, parsed, kernel.ui, kernel.prompt).exec();
+  }
+
   return $kernel.shortcircuit();
 });
 
