@@ -92,7 +92,8 @@ export const formatFlagOption = (flag: any, colors: any) => {
 };
 
 export const formatFlagDescription = (flag: any, colors: any) => {
-  const defaultValue = flag.default !== undefined ? `[default: ${flag.default}]` : '';
+  const defaultValue =
+    flag.default !== undefined ? `[default: ${flag.type == 'number' ? colors.cyan(flag.default) : flag.default}]` : '';
   const separator = defaultValue && flag.description ? ' ' : '';
   return colors.dim(`${flag.description || ''}${separator}${defaultValue}`);
 };
