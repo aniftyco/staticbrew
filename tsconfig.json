@@ -1,0 +1,16 @@
+{
+  "extends": "@aniftyco/tsconfig",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "lib": ["ESNext"],
+    "moduleResolution": "NodeNext",
+    "declaration": true,
+    "removeComments": false,
+    "incremental": false,
+    "baseUrl": "src/",
+    "outDir": "dist/"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
