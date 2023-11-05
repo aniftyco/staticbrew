@@ -4,9 +4,10 @@ import { printHelp, printHelpFor } from '@adonisjs/ace/build/src/utils/help';
 import { Application } from '@adonisjs/application';
 import { logger } from '@poppinss/cliui';
 
+import * as commands from './commands';
 import { getPkgJson } from './utils';
 
-export class StaticBrew extends Kernel {
+export class Console extends Kernel {
   public constructor(root: string) {
     super(new Application(root, 'console', {}));
 
@@ -20,6 +21,8 @@ export class StaticBrew extends Kernel {
     };
 
     this.flag('help', help, { alias: 'h' });
+
+    this.register(Object.values(commands));
   }
 
   public printHelp(

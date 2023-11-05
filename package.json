@@ -2,7 +2,7 @@
   "name": "staticbrew",
   "description": "Where your static sites live",
   "version": "0.0.0",
-  "bin": "dist/index.js",
+  "bin": "dist/bin.js",
   "author": {
     "name": "NiftyCo, LLC",
     "email": "support@aniftyco.com",
