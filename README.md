@@ -27,13 +27,12 @@ When you run the `staticbrew --help` command you'll see the following overview o
 ```sh
 StaticBrew - Where your static sites live (v0.0.0)
 
-Usage:
-  staticbrew  <command> [options]
+Usage: staticbrew <command>
 
-Options:
-  --help  View help for a given command
+Available commands
+  deploy              Deploy your static site to the cloud
+  start               Start the development server
 
-Available commands:
-  deploy  Deploy your static site to the cloud
-  dev     Start the development server
+Global Flags
+  -h, --help boolean
 ```
