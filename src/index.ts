@@ -1,20 +1,12 @@
+#!/usr/bin/env node --no-warnings
+
 import { handleError, Kernel } from '@adonisjs/ace';
 import { Application } from '@adonisjs/application';
 
 import { DevCommand } from './dev';
 
-export class StaticBrew {
-  private app: Application;
-  private ace: Kernel;
+const cli = new Kernel(new Application(process.cwd(), 'console', {}));
 
-  constructor(root: string) {
-    this.app = new Application(root, 'console', {});
-    this.ace = new Kernel(this.app);
+cli.register([DevCommand]);
 
-    this.ace.register([DevCommand]);
-  }
-
-  public async handle(argv: string[]) {
-    return this.ace.handle(argv).catch((error: unknown) => handleError(error));
-  }
-}
+cli.handle(process.argv.slice(2)).catch((error: unknown) => handleError(error));
