@@ -1,7 +1,7 @@
 import { BaseCommand, flags } from '@adonisjs/ace';
 
 export class DevCommand extends BaseCommand {
-  static commandName = 'dev';
+  static commandName = 'start';
   static description = 'Start the development server';
 
   @flags.number({ description: 'Port to start the development server on', alias: 'p' })

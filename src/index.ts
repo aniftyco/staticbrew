@@ -1,12 +1,11 @@
 #!/usr/bin/env node --no-warnings
 
-import { handleError, Kernel } from '@adonisjs/ace';
-import { Application } from '@adonisjs/application';
-
+import { DeployCommand } from './deploy';
 import { DevCommand } from './dev';
+import { StaticBrew } from './staticbrew';
 
-const cli = new Kernel(new Application(process.cwd(), 'console', {}));
+const cli = new StaticBrew(process.cwd());
 
-cli.register([DevCommand]);
+cli.register([DevCommand, DeployCommand]);
 
-cli.handle(process.argv.slice(2)).catch((error: unknown) => handleError(error));
+cli.handle(process.argv.slice(2));
