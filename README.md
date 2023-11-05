@@ -24,7 +24,7 @@ npx staticbrew --help
 
 When you run the `staticbrew --help` command you'll see the following overview of the `staticbrew` command...
 
-```sh
+```text
 StaticBrew - Where your static sites live (v0.0.0)
 
 Usage: staticbrew <command>
