@@ -1,7 +1,7 @@
 import { handleError, Kernel } from '@adonisjs/ace';
 import { Application } from '@adonisjs/application';
 
-import { DevCommand } from './commands/dev';
+import { DevCommand } from './dev';
 
 export class StaticBrew {
   private app: Application;
